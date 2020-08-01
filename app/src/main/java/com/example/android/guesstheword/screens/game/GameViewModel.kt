@@ -99,9 +99,22 @@ class GameViewModel : ViewModel() {
      */
     private fun nextWord() {
         //Select and remove a word from the list
-        if (!wordList.isEmpty()) {
-            //Select and remove a word from the list
-            word.value = wordList.removeAt(0)
+        if (wordList.isEmpty()) {
+            onGameFinish()
+
+        } else {
+            //Select and remove a _word from the list
+            _word.value = wordList.removeAt(0)
         }
+    }
+
+    /** Method for the game completed event **/
+
+    fun onGameFinish() {
+        _eventGameFinish.value = true
+    }
+
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = false
     }
 }
